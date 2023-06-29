@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Age calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    
+    .parent{
+      border-radius: 15px;
+      height: 360px;
+      padding: 40px;
+      width: 500px;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-bottom-right-radius: 140px;
+      align-self: center;
+
+    }
+    body{
+      background-color: hsl(0, 0%, 94%);
+      display: flex;
+      justify-content: center;
+      font-family: Poppins;
+      height: 96vh;
+    }
+    .ab {
+      height: 21px;
+    }
+    h5{
+      margin:auto;
+      color: rgba(0, 0, 0, 0.5);
+      float: left;
+      letter-spacing: 2px;
+      padding-right: 110px;
+      font-size: 12px;
+    }
+    .cd{
+      margin-top: 8px;
+    }
+    input{
+      padding: auto;
+      font-size: 23px;
+      font-family: Poppins;
+      padding-left: 15px;
+      margin-right: 20px;
+      border-radius: 3px;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      height: 45px;
+      width: 100px;
+      cursor: pointer;
+    }
+    input:focus{
+      border: 1px solid hsl(259, 100%, 65%);
+    }
+    input::-webkit-inner-spin-button{
+      -webkit-appearance: none;
+    }
+    hr{
+      margin-top: 40px;
+      width: 420px;
+      float: left;
+      opacity: 0.3;
+      padding-left: 0px;
+      margin-left: 0px;
+    }
+    img{
+      width: 30px;
+    }
+    .btn{
+      float: inherit;
+      margin-top: 10px;
+
+      background-color: hsl(259, 100%, 65%);
+      border-radius: 50%;
+      padding: 20px;
+      cursor: pointer;
+      transition: 0.5s;
+      border: 0px;
+    }
+    .btn:hover{
+      background-color: hsl(0, 0%, 8%);
+    }
+    h1{
+      font-style: oblique;
+      font-size: 70px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      line-height: 1;
+      /* font-weight: 400i; */
+    }
+    .bc{
+      margin-top: 0px;
+      font-family: 'Poppins', sans-serif;
+    }
+    span{
+      color: hsl(259, 100%, 65%);
+    }
+    #b{
+      height:1.2cm;
+      width: 3cm;
+      padding-right: 100;
+    }
+    hr{
+      background-color: black;
+    }
+    #a {
+      color: purple;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+
+  </style>
+</head>
+<body>
+  <div class = "parent">
+    <div class = "ab">
+      <h5>DAY</h5>
+      <h5>MONTH</h5>
+      <h5>YEAR</h5><br>
+    </div>
+    <div class="cd">
+      <input id="DATE" type="number" placeholder="DD"></input>
+      <input id="MONTH" type="number" placeholder="MM"></input>
+      <input id="YEAR" type="number" placeholder="YYYY" ></input>
+    </div>
+    <hr>
+    <button onclick="updatedData()" class="btn">
+      <img src="assets\images\icon-arrow.svg"></img>
+    </button>
+    <div class = "bc">
+      <h1><span id="DATE1" class="a">- -</span>years</h1>
+      <h1><span id="MONTH1" class="a">- -</span>months</h1>
+      <h1><span id="YEAR1" class="a">- -</span>days</h1>
+    </div>
+  </div>
+  <script>
+    function updatedData(){
+      var monthEndings = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+      var gettingDate = document.getElementById('DATE').value;
+      var gettingMonth = document.getElementById('MONTH').value;
+      var gettingYear = document.getElementById('YEAR').value;
+
+      var date= new Date();
+      var gettingDate1 = date.getDate();
+      var gettingMonth1 = date.getMonth();
+      var gettingYear1 = date.getFullYear();
+
+      if(gettingDate1 < gettingDate){
+        gettingDate1 = gettingDate1 + monthEndings[gettingMonth1 - 1];
+        gettingMonth1 = gettingMonth1 - 1;
+        // console.log(gettingDate1);
+        // console.log(gettingMonth1);
+      }
+      if(gettingMonth1 < gettingMonth){
+        gettingMonth1 = gettingMonth1 + 12;
+        gettingYear1 = gettingYear1 - 1;
+        // console.log(gettingYear1);
+        // console.log(gettingMonth1);
+      }
+
+      var gettingDate2 = gettingDate1 - gettingDate;
+      var gettingMonth2 = gettingMonth1 - gettingMonth;
+      var gettingYear2 = gettingYear1 - gettingYear;
+      // console.log(gettingDate2);
+      // console.log(gettingMonth2);
+      // console.log(gettingYear2);
+
+      document.getElementById('YEAR1').innerHTML = gettingDate2;
+      document.getElementById('MONTH1').innerHTML = gettingMonth2;
+      document.getElementById('DATE1').innerHTML = gettingYear2;
+    }
+  </script>
+</body>
+</html>
